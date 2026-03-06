@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevgilime Özel Sürpriz</title>
+<style>
+body{
+margin:0;
+padding:0;
+font-family:Arial, sans-serif;
+background:url("https://images.unsplash.com/photo-1518199266791-5375a83190b7") no-repeat center center/cover;
+background-size:cover;
+color:black;
+overflow-x:hidden;
+text-align:center;
+}
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
+}
+
+#intro button{
+padding:20px 40px;
+font-size:20px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+.container{
+display:none;
+padding:50px;
+background:rgba(255,255,255,0.7);
+margin:40px;
+border-radius:20px;
+}
+
+h1{
+font-size:40px;
+text-shadow:2px 2px 5px white;
+}
+
+p{
+font-size:22px;
+line-height:1.6;
+}
+
+.custom-text{
+font-style:italic;
+font-size:26px;
+margin-top:40px;
+text-shadow:1px 1px 4px white;
+}
+
+/* Kayan kalpler */
+
+.heart{
+position:fixed;
+top:-10px;
+color:red;
+font-size:24px;
+animation:fall linear forwards;
+pointer-events:none;
+}
+
+/* Gül yaprakları */
+
+.rose{
+position:fixed;
+top:-50px;
+color:#ff4d6d;
+font-size:24px;
+animation:roseFall linear forwards;
+pointer-events:none;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+@keyframes roseFall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+</style>
+</head>
+<body>
+
+<!-- Giriş -->
+<div id="intro">
+<h2>Sana bir sürprizim var ❤️</h2>
+<button onclick="startSite()">Tıkla ve Göster</button>
+</div>
+
+<!-- Müzik -->
+<iframe id="music" width="0" height="0" src="" frameborder="0" allow="autoplay"></iframe>
+
+<!-- İçerik -->
+<div class="container" id="content">
+<h1 id="title"></h1>
+
+<p>
+Hayatımda seni tanıdığımdan beri her günüm bir öncekinden daha özel.  
+Seninle güldüğümde dünya daha renkli, seninle konuştuğumda zaman duruyor.  
+Seninle geçirdiğim her saniye, kalbimde bir ömür boyu saklamak istediğim bir anı gibi.  
+Gözlerinin derinliğinde kaybolmak, gülüşünün sıcaklığında ısınmak, ellerinin bana dokunuşunda evimi bulmak gibi…<br><br>
+
+Sen benim için sadece bir sevgili değil, aynı zamanda en iyi arkadaşım, sırdaşım ve hayatımın anlamısın.  
+Her sabah uyanıp seni düşünmek, her gece yatağa yattığımda senin hayalini görmek, bana tarifsiz bir mutluluk veriyor.  
+Senin yanında kendim olabiliyorum, en saf ve en gerçek halimle…<br><br>
+
+Bazen sadece sessizce yanına oturup ellerini tutmak istiyorum;  
+bazen sana bakıp, "Seninle geçirdiğim her an benim için bir mucize" demek…  
+Seninle yaşadığım her duygu, kalbimde ölümsüzleşiyor.  
+İyi ki varsın, iyi ki hayatımda benimlesin, iyi ki seni tanımışım.<br><br>
+
+Hayat bazen karmaşık ve zor görünebilir, ama sen yanımda olduğunda her şey kolaylaşıyor.  
+Senin sevgini hissetmek, bana güç veriyor, umut veriyor ve her şeyi daha güzel yapıyor.  
+Seninle geçen her gün bir kutlama gibi, bir masal gibi…  
+Senin varlığın, kalbimin en değerli hazinesi. 💖<br><br>
+
+Bu siteyi sana, kalbimin derinliklerinden gelen bu sözlerle armağan ediyorum.  
+Her baktığında bil ki, seni düşünen bir kalp burada atıyor,  
+her satırda sana olan sevgimi fısıldıyor ve sana olan özlemimi dile getiriyor.  
+Sen benim en değerli hazinemsin, en güzel masalım, en derin duygum.  
+Ve unutma, bu 8 Mart’ta  seni, kalbimde ki senle kutluyorum . ❤️
+</p>
+
+<div class="custom-text">
+seni bulmaktan önce aramak isterim, seni sevmekten önce anlamak isterim,  
+seni bir yaşam boyu bitirmek değil de, sana hep hep yeniden başlamak isterim.
+</div>
+</div>
+
+<script>
+const text="💖 Sen benim hayatımın en güzel parçasısın 💖";
+let i=0;
+
+function startSite(){
+document.getElementById("intro").style.display="none";
+document.getElementById("content").style.display="block";
+
+// Müzik başlat
+document.getElementById("music").src="https://www.youtube.com/embed/2Vv-BfVoq4g?autoplay=1&loop=1&playlist=2Vv-BfVoq4g";
+
+// Başlığı harf harf yaz
+typeWriter();
+
+// Kalpler ve güller
+setInterval(createHeart,300);
+setInterval(createRose,700);
+}
+
+// Harf harf yazı
+function typeWriter(){
+if(i<text.length){
+document.getElementById("title").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,70);
+}
+}
+
+// Kayan kalpler
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+}
+
+// Gül yaprakları
+function createRose(){
+const rose=document.createElement("div");
+rose.classList.add("rose");
+rose.innerHTML="🌹";
+rose.style.left=Math.random()*100+"vw";
+rose.style.fontSize=(15+Math.random()*20)+"px";
+rose.style.animationDuration=(Math.random()*4+4)+"s";
+document.body.appendChild(rose);
+setTimeout(()=>rose.remove(),8000);
+}
+</script>
+</body>
+</html>
